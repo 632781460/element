@@ -61,7 +61,7 @@
           :border="border"
           :store="store"
           :layout="layout"
-          :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }"></table-header>
+          :style="{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }"></table-header>
       </div>
       <div class="el-table__fixed-body-wrapper" ref="fixedBodyWrapper"
         :style="[
@@ -76,7 +76,7 @@
           :highlight="highlightCurrentRow"
           :row-class-name="rowClassName"
           :row-style="rowStyle"
-          :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }">
+          :style="{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }">
         </table-body>
       </div>
       <div class="el-table__fixed-footer-wrapper" ref="fixedFooterWrapper" v-if="showSummary" v-show="data && data.length > 0">
@@ -87,7 +87,7 @@
           :summary-method="summaryMethod"
           :store="store"
           :layout="layout"
-          :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }"></table-footer>
+          :style="{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }"></table-footer>
       </div>
     </div>
     <div class="el-table__fixed-right" ref="rightFixedWrapper"
@@ -103,7 +103,7 @@
           :border="border"
           :store="store"
           :layout="layout"
-          :style="{ width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' }"></table-header>
+          :style="{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }"></table-header>
       </div>
       <div class="el-table__fixed-body-wrapper" ref="rightFixedBodyWrapper"
         :style="[
@@ -118,7 +118,7 @@
           :row-class-name="rowClassName"
           :row-style="rowStyle"
           :highlight="highlightCurrentRow"
-          :style="{ width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' }">
+          :style="{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }">
         </table-body>
       </div>
       <div class="el-table__fixed-footer-wrapper" ref="rightFixedFooterWrapper" v-if="showSummary" v-show="data && data.length > 0">
@@ -129,7 +129,7 @@
           :summary-method="summaryMethod"
           :store="store"
           :layout="layout"
-          :style="{ width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' }"></table-footer>
+          :style="{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }"></table-footer>
       </div>
     </div>
     <div class="el-table__fixed-right-patch"
