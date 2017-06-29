@@ -1,3 +1,9 @@
+<style>
+.up {
+  margin-left: 5px;
+}
+</style>
+
 <template>
   <div class="el-transfer">
     <transfer-panel
@@ -34,7 +40,24 @@
       :default-checked="rightDefaultChecked"
       :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')"
       @checked-change="onTargetCheckedChange">
-      <slot name="right-footer"></slot>
+      <slot name="right-footer">
+        <el-button 
+          @click="up()"
+          type="text" 
+          class="up"
+          :disabled="rightChecked.length > 1"
+        >
+          上移
+        </el-button>
+        <el-button 
+          type="text" 
+          class="down" 
+          :disabled="rightChecked.length > 1"
+          @click="down()"
+        >
+          下移
+        </el-button>
+      </slot>
     </transfer-panel>
   </div>
 </template>
@@ -130,7 +153,11 @@
       },
 
       targetData() {
-        return this.data.filter(item => this.value.indexOf(item[this.props.key]) > -1);
+        const keys = this.data.map(item => item[this.props.key]);
+        return this.value.map(item => {
+          const index = keys.indexOf(item);
+          return this.data[index];
+        });
       }
     },
 
@@ -147,6 +174,41 @@
 
       onTargetCheckedChange(val) {
         this.rightChecked = val;
+      },
+
+      up() {
+        const currentValue = this.value.slice();
+        const index = currentValue.indexOf(this.rightChecked[0]);
+        if (index !== -1) {
+          if (index === 0) {
+            const first = currentValue.shift();
+            currentValue.push(first);
+          } else {
+            const upIndex = index - 1;
+            const temp = currentValue[upIndex];
+            currentValue[upIndex] = currentValue[index];
+            currentValue[index] = temp;
+          }
+          this.$emit('input', currentValue);
+        }
+      },
+
+      down() {
+        const currentValue = this.value.slice();
+        const index = currentValue.indexOf(this.rightChecked[0]);
+        const lastIndex = currentValue.length - 1;
+        if (index !== -1) {
+          if (index === lastIndex) {
+            const first = currentValue.pop();
+            currentValue.unshift(first);
+          } else {
+            const upIndex = index + 1;
+            const temp = currentValue[upIndex];
+            currentValue[upIndex] = currentValue[index];
+            currentValue[index] = temp;
+          }
+          this.$emit('input', currentValue);
+        }
       },
 
       addToLeft() {
