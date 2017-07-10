@@ -45,14 +45,14 @@
           @click="up()"
           type="text" 
           class="up"
-          :disabled="rightChecked.length > 1"
+          :disabled="rightChecked.length !== 1"
         >
           上移
         </el-button>
         <el-button 
           type="text" 
           class="down" 
-          :disabled="rightChecked.length > 1"
+          :disabled="rightChecked.length !== 1"
           @click="down()"
         >
           下移
