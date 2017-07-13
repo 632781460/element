@@ -304,7 +304,11 @@ export default {
         this.columnConfig.label = newVal;
       }
     },
-
+    className(newVal) {
+      if (this.columnConfig) {
+        this.columnConfig.className = newVal;
+      }
+    },
     prop(newVal) {
       if (this.columnConfig) {
         this.columnConfig.property = newVal;
