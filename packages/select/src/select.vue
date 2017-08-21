@@ -139,7 +139,7 @@
           return this.loadingText || this.t('el.select.loading');
         } else {
           if (this.remote && this.query === '' && this.options.length === 0) return false;
-          if (this.filterable && this.options.length > 0 && this.filteredOptionsCount === 0) {
+          if (this.filterable && this.query && this.options.length > 0 && this.filteredOptionsCount === 0) {
             return this.noMatchText || this.t('el.select.noMatch');
           }
           if (this.options.length === 0) {
